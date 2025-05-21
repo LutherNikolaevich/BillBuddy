@@ -9,11 +9,9 @@ from PyQt6.QtCore import Qt, QPropertyAnimation, QEasingCurve, QPoint, QUrl, QVa
 from PyQt6.QtGui import QFont, QIcon, QColor, QPalette, QDesktopServices, QPixmap, QDoubleValidator
 import sqlite3
 
-# Function to get the absolute path for resources
 def resource_path(relative_path):
     """ Get absolute path to resource, works for dev and for PyInstaller """
     try:
-        # PyInstaller creates a temporary folder and stores path in _MEIPASS
         base_path = sys._MEIPASS
     except Exception:
         base_path = os.path.abspath(".")
@@ -451,7 +449,6 @@ class ExpenseTracker(QMainWindow):
         self.daily_total_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         layout.addWidget(self.daily_total_label)
         
-        # Input form
         form_layout = QHBoxLayout()
         self.description_input = QLineEdit()
         self.description_input.setPlaceholderText("Description")
@@ -870,7 +867,6 @@ class ExpenseTracker(QMainWindow):
         daily_results = self.cursor.fetchall()
 
         if daily_results:
-            # Format the output string for multiple currencies
             summary_parts = []
             for total, currency in daily_results:
                 symbol = CURRENCIES.get(currency, '')
